@@ -1,4 +1,10 @@
-# This code depends on make tool being used
+
+bin
+build
+dist
+nbproject
+obj
+
 bin/
 build/
 dist/
