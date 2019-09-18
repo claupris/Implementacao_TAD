@@ -1,0 +1,9 @@
+#
+projeto E.D.cbp
+
+bin/
+build/
+dist/
+nbproject/
+obj/
+.dep.inc
