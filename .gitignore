@@ -1,9 +1,5 @@
-
-bin
-build
-dist
-nbproject
-obj
+#
+projeto E.D.cbp
 
 bin/
 build/
