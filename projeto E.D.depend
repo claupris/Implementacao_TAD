@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1568856310 source:/home/lwms/Projetcs/claudiny/C/2019/projeto E.D/main.c
+	<stdio.h>
+	<stdlib.h>
+	"alunos.h"
+
+1568854134 source:/home/lwms/Projetcs/claudiny/C/2019/projeto E.D/alunos.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"alunos.h"
+
+1568854587 /home/lwms/Projetcs/claudiny/C/2019/projeto E.D/alunos.h
+	"funcoes.h"
+
+1568852682 /home/lwms/Projetcs/claudiny/C/2019/projeto E.D/funcoes.h
+
+1568852750 source:/home/lwms/Projetcs/claudiny/C/2019/projeto E.D/funcoes.c
+	<stdio.h>
+	<stdlib.h>
+	"funcoes.h"
+

@@ -4,12 +4,12 @@ typedef struct _hogwarts{
     void ** alunos;
 }hogwarts;
 
-hogwarts *hogCreate(int max) //cria a escola de magia e brixaria de HOGWARTS //
+hogwarts *hogCreate(int max); //cria a escola de magia e brixaria de HOGWARTS //
 
-int hogDestroy(hogwarts *h,) // destroi HOGWARTS //
+int hogDestroy(hogwarts *h); // destroi HOGWARTS //
 
-int hogwartsNewAluno(hogwarts *h, void * aln) // um jovem recebe a carta para adentrar a HOGWARTS //
+int hogwartsNewAluno(hogwarts *h, void * aln); // um jovem recebe a carta para adentrar a HOGWARTS //
 
-void * hogwartsQuest(hogwarts *h, void key, int(*cmp)(void*, void*)) // procura um bruxo que estua em HOGWARTS //
+void * hogwartsQuest(hogwarts *h, void *key, int(*cmp)(void*, void*)); // procura um bruxo que estua em HOGWARTS //
 
-void * hogKickOut(hogwarts *h, void key, int(*cmp)(void*, void*)) // expulsa um bruxo de HOGWARTS //
+void * hogKickOut(hogwarts *h, void *key, int(*cmp)(void*, void*)); // expulsa um bruxo de HOGWARTS //
