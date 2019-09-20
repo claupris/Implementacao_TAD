@@ -3,49 +3,51 @@
 #include <string.h>
 #define TRUE 1
 #define FALSE 0
+#include "funcoes.h"
 #include "alunos.h"
+#ifdef _WIN32
+#define CLEAR "cls"
+#else //In any other OS
+#define CLEAR "clear"
+#endif
 
-int cmpMatAluno(void *a, void *b){
-  char *auxA;
-  aluno *auxB;
+int cmpMatAluno(void *a, void *b) {
+    char *auxA;
+    aluno *auxB;
 
-  auxA = (char *)a;
-  auxB = (aluno *)b;
+    auxA = (char *)a;
+    auxB = (aluno *)b;
 
-  if (strcmp(auxA, auxB->matricula) == 0){
-    return TRUE;
-  }
-  else {
-    return FALSE;
-  }
+    if (strcmp(auxA, auxB->matricula) == 0) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
-int cmpNomeAluno(void *a, void *b){
-  char *auxA;
-  aluno *auxB;
+int cmpNomeAluno(void *a, void *b) {
+    char *auxA;
+    aluno *auxB;
 
-  auxA = (char *)a;
-  auxB = (aluno *)b;
+    auxA = (char *)a;
+    auxB = (aluno *)b;
 
-  if (strcmp(auxA, auxB->nome) == 0){
-    return TRUE;
-  }
-  else {
-    return FALSE;
-  }
+    if (strcmp(auxA, auxB->nome) == 0) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
-int searchMatricula(hogwarts *h){
+int searchMatricula(hogwarts *h) {
 
     char aux_mat[6];
     aluno *aux_A;
-    if(h!=NULL && h->nAlunos>0){
+    if(h!=NULL && h->nAlunos>0) {
         printf("Informe a matricula do aluno a ser buscada: ");
-        fflush(stdin);
-        scanf("%[^\n]s", &aux_mat);
-        fflush(stdin);
+        scanf("%[^\n]s", aux_mat);
         aux_A = (aluno *)hogwartsQuest(h, (void *)aux_mat, cmpMatAluno);
-        if (aux_A != NULL){
+        if (aux_A != NULL) {
             printf("**************INFORMACOES**************\n");
             printf("Nome: %s\n", aux_A->nome);
             printf("Matricula de %s: %s\n", aux_A->nome, aux_A->matricula);
@@ -53,32 +55,31 @@ int searchMatricula(hogwarts *h){
             printf("O ano letivo de %s: %d\n", aux_A->nome, aux_A->anoCurso);
             printf("A altura de %s: %.2f\n", aux_A->nome, aux_A->altura);
             printf("***************************************\n");
-            system("PAUSE");
+            getchar();
             return TRUE;
-        }
-        else {
-            printf("Matricula = %s escola de magia e bruxaria de HOGWARTS\n", aux_mat);
-            system("PAUSE");
+        } else {
+            printf("Matricula = %s na escola de magia e bruxaria de HOGWARTS nao encontrada!!\n", aux_mat);
+            getchar();
             return FALSE;
         }
     }
     printf("HOGWARTS AINDA ESTA SEM ALUNOS!!!\n");
-    system("PAUSE");
+    getchar();
     return FALSE;
 }
 
 
-int searchName(hogwarts *h){
+int searchName(hogwarts *h) {
     char aux_nome[30];
     aluno *aux_A;
 
     if(h!=NULL && h->nAlunos>0) {
         printf("Informe o nome do aluno a ser buscado: ");
         fflush(stdin);
-        scanf("%[^\n]s", &aux_nome);
+        scanf("%[^\n]s", aux_nome);
         fflush(stdin);
-        aux_A = (aluno *)hogwartsQuest(h, (void *)aux_nome, cmpNomeAluno);
-        if (aux_A != NULL){
+        aux_A = (aluno *)hogwartsQuest(h, aux_nome, cmpNomeAluno);
+        if (aux_A != NULL) {
             printf("**************INFORMACOES**************\n");
             printf("Nome: %s\n", aux_A->nome);
             printf("Matricula de %s: %s\n", aux_A->nome, aux_A->matricula);
@@ -86,40 +87,38 @@ int searchName(hogwarts *h){
             printf("Ano letivo de %s: %d\n", aux_A->nome, aux_A->anoCurso);
             printf("Altura %s: %.2f\n", aux_A->nome, aux_A->altura);
             printf("***************************************\n");
-            system("PAUSE");
+            getchar();
             return TRUE;
-        }
-        else {
+        } else {
             printf("Aluno %s nao encontrado na escola de magia e bruxaria de HOGWARTS\n", aux_nome);
-            system("PAUSE");
+            getchar();
             return FALSE;
         }
     }
     printf("HOGWARTS AINDA ESTA SEM ALUNOS!!!\n");
-    system("PAUSE");
+    getchar();
     return FALSE;
 }
 
 
-int removeViaMat(hogwarts *h){
+int removeViaMat(hogwarts *h) {
     char aux_mat[6];
     aluno *aux_A;
-    if(h!=NULL && h->nAlunos>0){
+    if(h!=NULL && h->nAlunos>0) {
         printf("Informe a matricula do aluno a ser buscada: ");
         fflush(stdin);
-        scanf("%[^\n]s", &(aux_mat));
+        scanf("%[^\n]s", (aux_mat));
         fflush(stdin);
         aux_A = (aluno *)hogKickOut(h, (void *)aux_mat, cmpMatAluno);
-        if (aux_A != NULL){
+        if (aux_A != NULL) {
             printf("**********************************************************************************\n");
             printf("O aluno com a matricula = %s foi encontrada e EXPULSO de HOGWARTS!!! Que pena T_T\n", aux_mat);
             printf("**********************************************************************************\n");
-            system("PAUSE");
+            getchar();
             return TRUE;
-        }
-        else {
+        } else {
             printf("Matricula = %s nao encontrada em HOGWARTS!! Que sorte!\n", aux_mat);
-            system("PAUSE");
+            getchar();
             return FALSE;
         }
     }
@@ -127,25 +126,24 @@ int removeViaMat(hogwarts *h){
     return FALSE;
 }
 
-int removeViaName(hogwarts *h){
+int removeViaName(hogwarts *h) {
     char aux_nome[30];
     aluno *aux_A;
-    if(h!=NULL && h->nAlunos>0){
+    if(h!=NULL && h->nAlunos>0) {
         printf("Informe o nome do aluno a ser buscado: ");
         fflush(stdin);
-        scanf("%[^\n]s", &(aux_nome));
+        scanf("%[^\n]s", (aux_nome));
         fflush(stdin);
         aux_A = (aluno *)hogKickOut(h, (void *)aux_nome, cmpNomeAluno);
-        if (aux_A != NULL){
+        if (aux_A != NULL) {
             printf("**********************************************************************************\n");
             printf("O aluno cujo o nome é %s foi EXPULSO de HOGWARTS!!! Que pena T_T\n", aux_nome);
             printf("**********************************************************************************\n");
             system("PAUSE");
             return TRUE;
-        }
-        else {
+        } else {
             printf("O aluno cujo o nome é %s nao foi encontrado em HOGWARTS!! Que sorte!\n", aux_nome);
-            system("PAUSE");
+            getchar();
             return FALSE;
         }
     }
@@ -153,40 +151,45 @@ int removeViaName(hogwarts *h){
     return FALSE;
 }
 
-int insertAluno(hogwarts *h){
+int insertAluno(hogwarts *h) {
     if(h!=NULL) {
         aluno *a = (aluno *) malloc(sizeof(aluno));
         if (a != NULL) {
-            printf("Informe o nome do aluno: ");
-            fflush(stdin);
-            scanf("%[^\n]s", (a->nome));
-            fflush(stdin);
-            printf("Informe a matricula do aluno: ");
-            fflush(stdin);
-            scanf("%[^\n]s", (a->matricula));
-            fflush(stdin);
-            printf("Informe a altura do aluno %s: ", a->nome);
-            scanf("%lf", &(a->altura));
-            printf("Informe o ano em que da escola o aluno %s deve entrar: ", a->nome);
-            scanf("%d", &(a->anoCurso));
-            printf("Informe a idade do aluno %s: ", a->nome);
-            scanf("%d", &(a->idade));
-            hogwartsNewAluno(h, (void *)a);
-            system("PAUSE");
-            return TRUE;
+            if(h->nAlunos<= h->maxAlunos) {
+                printf("Informe o nome do aluno: \n");
+                scanf("%s", (a->nome));
+                getchar();
+                system(CLEAR);
+                printf("Informe a matricula do aluno: \n");
+                scanf("%s", (a->matricula));
+                getchar();
+                system(CLEAR);
+                printf("Informe a altura do aluno %s: \n", a->nome);
+                scanf("%f", &(a->altura));
+                system(CLEAR);
+                printf("Informe o ano em que da escola o aluno %s deve entrar: \n", a->nome);
+                scanf("%d", &(a->anoCurso));
+                system(CLEAR);
+                printf("Informe a idade do aluno %s: \n", a->nome);
+                scanf("%d", &(a->idade));
+                system(CLEAR);
+                hogwartsNewAluno(h, (void *)a);
+                getchar();
+                return TRUE;
+            }
         }
     }
     printf("Infelismente a escola de magia e bruxaria de HOGWARTS nao existe para esse aluno!!!\n");
-    system("PAUSE");
+    getchar();
     return FALSE;
 }
 
-int listaAlunos(hogwarts *h){
+int listaAlunos(hogwarts *h) {
     int i;
     if(h!=NULL) {
-        if(h->nAlunos>0){
-            printf("***\ALUNOS CONTEMPLADOS COM A CARTA E MATRICULADOS EM HOGWARTS\t***\n");
-            for(i=0;i<h->nAlunos; i++){
+        if(h->nAlunos>0) {
+            printf("***\tALUNOS CONTEMPLADOS COM A CARTA E MATRICULADOS EM HOGWARTS\t***\n");
+            for(i=0; i<h->nAlunos; i++) {
                 aluno *aux = (aluno*)h->alunos[i];
                 printf("****************************\n");
                 printf("Nome: %s\n", aux->nome);
@@ -197,34 +200,41 @@ int listaAlunos(hogwarts *h){
                 printf("****************************\n");
 
             }
-            printf("***\ALUNOS CONTEMPLADOS COM A CARTA E MATRICULADOS EM HOGWARTS\t***\n");
-            system("PAUSE");
+            printf("***\tALUNOS CONTEMPLADOS COM A CARTA E MATRICULADOS EM HOGWARTS\t***\n");
+            getchar();
             return TRUE;
-        }
-        else {
+        } else {
             printf("****************************\n");
             printf("HOGWARTS AINDA ESTÁ SEM ALUNOS!!!\n");
             printf("****************************\n");
-            system("PAUSE");
+            getchar();
         }
     }
     return FALSE;
 }
 
-int freeAll(hogwarts *h){
+int freeAll(hogwarts *h) {
     int i;
     if(h!=NULL) {
-        if(h->nAlunos>0){
-            for(i=0;i<h->nAlunos;i++){
+        if(h->nAlunos>0) {
+            for(i=0; i<h->nAlunos; i++) {
                 free(h->alunos[i]);
             }
             h->nAlunos = 0;
             printf("ALUNOS EXPULSOS COM SUCESSO!!!\n");
-            system("PAUSE");
+            int dbool = hogDestroy(h);
+            if(dbool) {
+                printf("TURMA RETIRADA COM SUCESSO!!\n");
+            }
+            getchar();
             return TRUE;
         }
         printf("A ESCOLA AINDA NÃO TINHA ALUNOS PARA EXPULSAR ALGUEM!!!\n");
-        system("PAUSE");
+        int dbool = hogDestroy(h);
+        if(dbool) {
+            printf("TURMA RETIRADA COM SUCESSO!!\n");
+        }
+        getchar();
         return FALSE;
     }
     return FALSE;

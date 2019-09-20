@@ -5,14 +5,14 @@
 #include "funcoes.h"
 
 
-hogwarts *hogCreate(int max) {
+hogwarts *hogCreate(int maximo) {
     hogwarts *h;
-    if(max>0) {
+    if(maximo>0) {
         h = (hogwarts*)malloc(sizeof(hogwarts));
         if (h!= NULL) {
-            h->alunos = (void**)malloc(sizeof(void*)*max);
+            h->alunos = (void**)malloc(sizeof(void*)*maximo);
             if(h->alunos!=NULL) {
-                h-> maxAlunos = max;
+                h-> maxAlunos = maximo;
                 h->nAlunos = 0;
                 return h;
             }
@@ -68,7 +68,7 @@ void * hogKickOut(hogwarts *h, void *key, int(*cmp)(void*, void*)) {
             }
             if (cmp(h->alunos[i], key)== TRUE) {
                 aux = h->alunos[i];
-                for (i = key; i < h->nAlunos-1; i++) {
+                for (; i < h->nAlunos-1; i++) {
                     h->alunos[i] = h->alunos[i+1];
                 }
                 h->nAlunos --;
