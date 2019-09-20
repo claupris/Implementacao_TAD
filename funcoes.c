@@ -63,10 +63,10 @@ void * hogKickOut(hogwarts *h, void *key, int(*cmp)(void*, void*)) {
     void * aux;
     if(h!= NULL) {
         if(h->nAlunos>0) {
-            while(cmp(h->alunos[i],key)!=TRUE && i < h->nAlunos) {
+            while(i < h->nAlunos && cmp(key, h->alunos[i])!=TRUE ){
                 i++;
             }
-            if (cmp(h->alunos[i], key)== TRUE) {
+            if (i < h->nAlunos && cmp(key, h->alunos[i])== TRUE) {
                 aux = h->alunos[i];
                 for (; i < h->nAlunos-1; i++) {
                     h->alunos[i] = h->alunos[i+1];

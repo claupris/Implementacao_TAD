@@ -119,9 +119,9 @@ int removeViaMat(hogwarts *h) {
         fflush(stdin);
         aux_A = (aluno *)hogKickOut(h, (void *)aux_mat, cmpMatAluno);
         if (aux_A != NULL) {
-            printf("**********************************************************************************\n");
+            printf("*******************************************************************************\n");
             printf("O aluno com a matricula = %s foi encontrada e EXPULSO de HOGWARTS!!! Que pena T_T\n", aux_mat);
-            printf("**********************************************************************************\n");
+            printf("*******************************************************************************\n");
             getchar();
             return TRUE;
         } else {
@@ -144,13 +144,13 @@ int removeViaName(hogwarts *h) {
         fflush(stdin);
         aux_A = (aluno *)hogKickOut(h, (void *)aux_nome, cmpNomeAluno);
         if (aux_A != NULL) {
-            printf("**********************************************************************************\n");
-            printf("O aluno cujo o nome é %s foi EXPULSO de HOGWARTS!!! Que pena T_T\n", aux_nome);
-            printf("**********************************************************************************\n");
-            system("PAUSE");
+            printf("*******************************************************************************\n");
+            printf("O aluno cujo o nome e %s foi EXPULSO de HOGWARTS!!! Que pena T_T\n", aux_nome);
+            printf("*******************************************************************************\n");
+            getchar();
             return TRUE;
         } else {
-            printf("O aluno cujo o nome é %s nao foi encontrado em HOGWARTS!! Que sorte!\n", aux_nome);
+            printf("O aluno cujo o nome e %s nao foi encontrado em HOGWARTS!! Que sorte!\n", aux_nome);
             getchar();
             return FALSE;
         }
@@ -218,7 +218,7 @@ int listaAlunos(hogwarts *h) {
             return TRUE;
         } else {
             printf("****************************\n");
-            printf("HOGWARTS AINDA ESTÁ SEM ALUNOS!!!\n");
+            printf("HOGWARTS AINDA ESTA SEM ALUNOS!!!\n");
             printf("****************************\n");
             getchar();
         }
