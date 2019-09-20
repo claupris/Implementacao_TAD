@@ -41,12 +41,16 @@ int cmpNomeAluno(void *a, void *b) {
 
 int searchMatricula(hogwarts *h) {
 
-    char aux_mat[6];
-    aluno *aux_A;
-    if(h!=NULL && h->nAlunos>0) {
+    if(h!=NULL && h->nAlunos > 0) {
+
+        char aux_mat[6];
+        aluno * aux_A;
+
         printf("Informe a matricula do aluno a ser buscada: ");
         scanf("%[^\n]s", aux_mat);
-        aux_A = (aluno *)hogwartsQuest(h, (void *)aux_mat, cmpMatAluno);
+
+        aux_A = (aluno *) hogwartsQuest(h, (void *)aux_mat, cmpMatAluno);
+
         if (aux_A != NULL) {
             printf("**************INFORMACOES**************\n");
             printf("Nome: %s\n", aux_A->nome);
@@ -55,11 +59,15 @@ int searchMatricula(hogwarts *h) {
             printf("O ano letivo de %s: %d\n", aux_A->nome, aux_A->anoCurso);
             printf("A altura de %s: %.2f\n", aux_A->nome, aux_A->altura);
             printf("***************************************\n");
+
             getchar();
+
             return TRUE;
         } else {
             printf("Matricula = %s na escola de magia e bruxaria de HOGWARTS nao encontrada!!\n", aux_mat);
+
             getchar();
+
             return FALSE;
         }
     }
@@ -78,7 +86,7 @@ int searchName(hogwarts *h) {
         fflush(stdin);
         scanf("%[^\n]s", aux_nome);
         fflush(stdin);
-        aux_A = (aluno *)hogwartsQuest(h, aux_nome, cmpNomeAluno);
+        aux_A = (aluno *)hogwartsQuest(h, (void *)aux_nome, cmpNomeAluno);
         if (aux_A != NULL) {
             printf("**************INFORMACOES**************\n");
             printf("Nome: %s\n", aux_A->nome);
@@ -132,7 +140,7 @@ int removeViaName(hogwarts *h) {
     if(h!=NULL && h->nAlunos>0) {
         printf("Informe o nome do aluno a ser buscado: ");
         fflush(stdin);
-        scanf("%[^\n]s", (aux_nome));
+        scanf("%s", aux_nome);
         fflush(stdin);
         aux_A = (aluno *)hogKickOut(h, (void *)aux_nome, cmpNomeAluno);
         if (aux_A != NULL) {
@@ -153,9 +161,9 @@ int removeViaName(hogwarts *h) {
 
 int insertAluno(hogwarts *h) {
     if(h!=NULL) {
-        aluno *a = (aluno *) malloc(sizeof(aluno));
-        if (a != NULL) {
-            if(h->nAlunos<= h->maxAlunos) {
+        if (h->nAlunos < h->maxAlunos) {
+            aluno *a = (aluno *) malloc(sizeof(aluno));
+            if (a != NULL) {
                 printf("Informe o nome do aluno: \n");
                 scanf("%s", (a->nome));
                 getchar();
@@ -174,10 +182,15 @@ int insertAluno(hogwarts *h) {
                 scanf("%d", &(a->idade));
                 system(CLEAR);
                 hogwartsNewAluno(h, (void *)a);
+
                 getchar();
+
                 return TRUE;
+
             }
         }
+        printf("SALA CHEIA!!!\n\n");
+        getchar();
     }
     printf("Infelismente a escola de magia e bruxaria de HOGWARTS nao existe para esse aluno!!!\n");
     getchar();

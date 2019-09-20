@@ -47,10 +47,10 @@ void * hogwartsQuest(hogwarts *h, void *key, int(*cmp)(void*, void*)) {
     int i = 0;
     if(h!= NULL) {
         if(h->nAlunos>0) {
-            while(cmp(h->alunos[i],key)!=TRUE && i < h->nAlunos) {
-                i++;
+            while(i < h->nAlunos && cmp(key, h->alunos[i])!=TRUE) {
+                ++i;
             }
-            if (cmp(h->alunos[i], key)== TRUE) {
+            if (i < h->nAlunos && cmp(key, h->alunos[i])== TRUE) {
                 return h->alunos[i];
             }
         }
